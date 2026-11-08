@@ -1,0 +1,40 @@
+# Baut die 3D-Daten dieses Orts mit der festgelegten Pipeline-Version und veröffentlicht sie auf GitHub Pages
+# (Settings → Pages → Source: GitHub Actions). Die Arbeit macht der wiederverwendbare Workflow des Explorers.
+#
+# Auslöser (nie nach Zeitplan – die Daten kommen von öffentlichen Diensten):
+#   - Push auf main, der ort.toml, Inhalte, Aktionen oder diese Datei ändert (eine neue Pipeline-Version ist eine
+#     Änderung dieser Datei). Reine Inhalts-Änderungen bauen keine Geländedaten neu: der fertige Datenstand kommt
+#     aus dem Cache, nur die Inhalte werden neu veröffentlicht.
+#   - von Hand: Actions → „Daten bauen und veröffentlichen“ → Run workflow.
+#
+# Pipeline-Version anheben: `uses: …@<ref>`, `pipeline_ref` und `pipeline_version` immer gemeinsam ändern.
+name: Daten bauen und veröffentlichen
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ort.toml
+      - "inhalte/**"
+      - "aktionen/**"
+      - .github/workflows/build.yml
+  workflow_dispatch:
+
+# Ein Build pro Ort zur selben Zeit; ein neuer wartet, bis der laufende fertig ist.
+concurrency:
+  group: ort-pages-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Die Vorlage selbst baut nichts.
+    if: github.repository != 'Open-Kirrberg/ort-vorlage'
+    uses: Open-Kirrberg/saar-lidar-explorer/.github/workflows/build-place.yml@0d378d9ce28b1abd3179513265e6fa3ba3d986be # pipeline 0.9.1
+    with:
+      pipeline_ref: 0d378d9ce28b1abd3179513265e6fa3ba3d986be
+      pipeline_version: "0.9.1"
+      place_id: musterort
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

@@ -1,0 +1,25 @@
+name: 🐞 Fehler melden
+description: Etwas stimmt nicht – ein falscher Punkt, ein Tippfehler, ein Problem mit den Daten dieses Orts.
+title: "Fehler: "
+labels: [fehler]
+body:
+  - type: textarea
+    id: was
+    attributes:
+      label: Was ist falsch?
+    validations:
+      required: true
+  - type: input
+    id: wo
+    attributes:
+      label: Wo?
+      description: Datei, Punkt-Name oder Link aus dem Explorer.
+  - type: textarea
+    id: richtig
+    attributes:
+      label: Wie wäre es richtig? (mit Quelle, falls möglich)
+  - type: markdown
+    attributes:
+      value: |
+        Fehler in der App selbst (Bedienung, Darstellung) bitte im
+        [Explorer-Repository](https://github.com/Open-Kirrberg/saar-lidar-explorer/issues) melden.

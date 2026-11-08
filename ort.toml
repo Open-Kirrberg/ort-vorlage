@@ -1,0 +1,32 @@
+# ort.toml – Steckbrief dieses Orts für den Saar LiDAR Explorer (Format sle-ort-v1).
+# Die Pipeline des Explorers liest diese Datei bei jedem Build (pipeline/place.py); `werkzeuge/ort_check.py`
+# prüft sie schon im Pull Request (Schema: werkzeuge/schemas/ort.schema.json). Unbekannte Schlüssel sind Fehler.
+
+schema = "sle-ort-v1"
+
+# Katalog-Id der Gemeinde: klein, ohne Umlaute, z. B. "homburg", "kirkel", "zweibruecken".
+# Sie muss im Orte-Katalog stehen (https://open-kirrberg.github.io/orte-katalog/catalog.json).
+id = "musterort"
+name_de = "Musterort"
+# Amtlicher Gemeindeschlüssel, 8 Ziffern, als Text (steht im Katalog beim Ort).
+ags = "10000000"
+# "SL" (Saarland) oder "RP" (Rheinland-Pfalz)
+state = "SL"
+# GitHub-Namen der Ortspaten – nur der GitHub-Name, keine Klarnamen oder E-Mail-Adressen.
+maintainers = ["dein-github-name"]
+
+[options]
+# Automatisch erkannte Relikt-Kandidaten (Gruben, Wälle, Hügel …) veröffentlichen?
+# Standard: nein (ADR 0053). Erst einschalten, wenn die Ortspaten die Kandidaten angesehen haben und die
+# Denkmalsituation kennen. Kandidaten sind Hypothesen, keine Funde – Schauen, nicht graben.
+relict_candidates = false
+# Punktwolken nur für ausgewählte Schwerpunkte (≈ 40 MB je km²). Ids aus der Liste der Explorer-Schwerpunkte
+# (pipeline/aois.toml, [[defaults.pointclouds]]) oder eigene Flächen unten. Höchstens 5.
+pointclouds = []
+
+# Eigene Punktwolken-Fläche (optional, mehrfach möglich): Rechteck in EPSG:25832 (UTM 32N), Vielfache von 100 m,
+# höchstens 1 km². Beispiel:
+# [[pointcloud_area]]
+# id = "burgberg"
+# name_de = "Burgberg"
+# bbox = [381500, 5463000, 382500, 5464000]

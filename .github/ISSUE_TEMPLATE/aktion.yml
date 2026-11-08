@@ -1,0 +1,56 @@
+name: 🌱 Aktion melden
+description: Eine Pflanz-, Entsiegelungs- oder Pflegeaktion im Ort.
+title: "Aktion: "
+labels: [aktion]
+body:
+  - type: input
+    id: titel
+    attributes:
+      label: Titel
+      placeholder: Zwölf Obstbäume am Spielplatz
+    validations:
+      required: true
+  - type: dropdown
+    id: art
+    attributes:
+      label: Art
+      options: [Pflanzung, Entsiegelung, Pflege, Sonstiges]
+    validations:
+      required: true
+  - type: input
+    id: datum
+    attributes:
+      label: Datum
+      placeholder: "2026-11-08"
+    validations:
+      required: true
+  - type: input
+    id: umfang
+    attributes:
+      label: Umfang
+      placeholder: "12 Bäume, ca. 400 m²"
+  - type: input
+    id: lage
+    attributes:
+      label: Lage (öffentlicher Ort)
+  - type: input
+    id: partner
+    attributes:
+      label: Beteiligte Organisationen
+      description: Vereine, Schulen, Gemeinde – bitte keine Namen von Privatpersonen.
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Beschreibung
+  - type: input
+    id: autor
+    attributes:
+      label: Wie sollen wir dich als Urheber nennen?
+      description: GitHub-Name oder ein selbst gewählter Name – keine E-Mail-Adresse.
+  - type: checkboxes
+    id: zustimmung
+    attributes:
+      label: Lizenz
+      options:
+        - label: Meine Angaben dürfen unter CC0 1.0 veröffentlicht werden.
+          required: true

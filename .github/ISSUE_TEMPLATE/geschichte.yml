@@ -1,0 +1,46 @@
+name: 📜 Geschichte vorschlagen
+description: Eine Geschichte zum Ort – Geschichte, Sagen, Erinnerungen, Naturbeobachtungen.
+title: "Geschichte: "
+labels: [geschichte]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Schauen, nicht graben.** Bitte keine Hinweise zum Graben oder Sondeln und keine genauen Fundstellen;
+        neue archäologische Beobachtungen bitte direkt der Denkmalpflege melden. Keine Kampfmittel, keine
+        Namen oder Adressen von Privatleuten.
+  - type: input
+    id: titel
+    attributes:
+      label: Titel
+    validations:
+      required: true
+  - type: textarea
+    id: text
+    attributes:
+      label: Die Geschichte
+    validations:
+      required: true
+  - type: textarea
+    id: quellen
+    attributes:
+      label: Quellen (Bücher, Chroniken, Webseiten)
+  - type: input
+    id: autor
+    attributes:
+      label: Wie sollen wir dich als Urheber nennen?
+      description: GitHub-Name oder ein selbst gewählter Name – keine E-Mail-Adresse.
+  - type: dropdown
+    id: lizenz
+    attributes:
+      label: Lizenz
+      options: [CC BY 4.0, CC BY-SA 4.0]
+    validations:
+      required: true
+  - type: checkboxes
+    id: zustimmung
+    attributes:
+      label: Rechte
+      options:
+        - label: Den Text habe ich selbst geschrieben (oder die Urheber haben zugestimmt), und er darf unter der gewählten Lizenz veröffentlicht werden.
+          required: true

@@ -1,0 +1,58 @@
+name: 🌳 Riesenbaum melden
+description: Ein besonders großer, alter oder schöner Baum im Ort.
+title: "Riesenbaum: "
+labels: [riesenbaum]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke! Bitte nur Bäume auf **öffentlich zugänglichem** Gelände (Wald, Park, Straße, Friedhof) – keine
+        Bäume in Privatgärten. Keine Personen, Kennzeichen oder Häuser auf Fotos. Fotos vor dem Hochladen ohne
+        EXIF/GPS-Daten speichern.
+  - type: input
+    id: name
+    attributes:
+      label: Name oder kurze Beschreibung
+      placeholder: Die dicke Eiche am Weiher
+    validations:
+      required: true
+  - type: input
+    id: lage
+    attributes:
+      label: Lage
+      description: Ortsbeschreibung oder Link aus dem Explorer (Adresszeile) bzw. Längen-/Breitengrad.
+      placeholder: "am Wanderweg zum Weiher, oder 7.3412, 49.3301"
+    validations:
+      required: true
+  - type: input
+    id: art
+    attributes:
+      label: Baumart (falls bekannt)
+  - type: input
+    id: masse
+    attributes:
+      label: Geschätzte Höhe und Stammumfang
+      placeholder: "ca. 35 m, Umfang in 1,30 m Höhe 4,20 m"
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Was ist besonders?
+  - type: textarea
+    id: foto
+    attributes:
+      label: Eigenes Foto (optional)
+      description: Hierher ziehen. Nur eigene Fotos, ohne Personen.
+  - type: input
+    id: autor
+    attributes:
+      label: Wie sollen wir dich als Urheber nennen?
+      description: GitHub-Name oder ein selbst gewählter Name – keine E-Mail-Adresse.
+  - type: checkboxes
+    id: zustimmung
+    attributes:
+      label: Lizenz und Regeln
+      options:
+        - label: Meine Angaben dürfen unter CC0 1.0, mein Foto unter CC BY 4.0 veröffentlicht werden. Das Foto habe ich selbst gemacht.
+          required: true
+        - label: Der Baum steht auf öffentlich zugänglichem Gelände.
+          required: true

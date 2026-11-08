@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-kirrberg.github.io/ort-vorlage/schemas/ort.schema.json",
+  "title": "ort.toml (sle-ort-v1)",
+  "description": "Steckbrief eines Ort-Repositorys. Die verbindliche Prüfung macht die Pipeline (pipeline/place.py im Explorer); dieses Schema prüft dasselbe schon im Pull Request.",
+  "type": "object",
+  "required": ["schema", "id", "name_de", "ags", "state", "maintainers"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "sle-ort-v1" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,39}$" },
+    "name_de": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "ags": { "type": "string", "pattern": "^\\d{8}$" },
+    "state": { "enum": ["SL", "RP"] },
+    "maintainers": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$" }
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relict_candidates": { "type": "boolean" },
+        "pointclouds": { "type": "array", "maxItems": 5, "uniqueItems": true,
+                         "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,39}$" } }
+      }
+    },
+    "pointcloud_area": {
+      "type": "array", "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["id", "name_de", "bbox"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,39}$" },
+          "name_de": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "bbox": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "type": "integer", "multipleOf": 100 } }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# Ortspaten: GitHub bittet sie bei jedem Pull Request um eine Prüfung.
+# Eigene GitHub-Namen eintragen und das Kommentarzeichen entfernen, z. B.:
+#
+# *              @dein-github-name
+# /.github/      @dein-github-name
+# /werkzeuge/    @dein-github-name

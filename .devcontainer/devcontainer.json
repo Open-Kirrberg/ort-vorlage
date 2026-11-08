@@ -1,0 +1,19 @@
+{
+  "name": "Ort pflegen (Saar LiDAR Explorer)",
+  "image": "mcr.microsoft.com/devcontainers/python:3.3.2-3.12-bookworm",
+  "postCreateCommand": "pip install --user --no-cache-dir uv==0.12.3 && uv sync --project werkzeuge --frozen",
+  "forwardPorts": [8000],
+  "portsAttributes": { "8000": { "label": "Vorschau", "onAutoForward": "openPreview" } },
+  "customizations": {
+    "vscode": {
+      "extensions": ["redhat.vscode-yaml", "tamasfe.even-better-toml"],
+      "settings": {
+        "json.schemas": [{ "fileMatch": ["inhalte/orte/*.geojson"], "url": "./werkzeuge/schemas/orte.schema.json" }],
+        "yaml.schemas": {
+          "./werkzeuge/schemas/aktion.schema.json": "aktionen/*.yml",
+          "./werkzeuge/schemas/bild.schema.json": "inhalte/bilder/*.yml"
+        }
+      }
+    }
+  }
+}
